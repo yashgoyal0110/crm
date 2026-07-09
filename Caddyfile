@@ -12,5 +12,10 @@ http://8.229.88.229 {
 		Referrer-Policy "strict-origin-when-cross-origin"
 	}
 
-	reverse_proxy 127.0.0.1:3002
+	reverse_proxy 127.0.0.1:3002 {
+		header_up Host {host}
+		header_up X-Forwarded-Host {host}
+		header_up X-Forwarded-Proto http
+		header_up X-Forwarded-Port 80
+	}
 }

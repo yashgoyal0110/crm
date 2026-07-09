@@ -1,3 +1,12 @@
+-- 0_init created legacy invoice/document extraction tables with the same
+-- "Invoices" table name. Drop them before this historical invoice-module
+-- migration creates its newer schema. The AtlasIQ rebrand no longer exposes
+-- invoicing, but these historical migrations still need to apply on fresh
+-- Docker databases.
+DROP TABLE IF EXISTS "DocumentsToInvoices" CASCADE;
+DROP TABLE IF EXISTS "Invoices" CASCADE;
+DROP TABLE IF EXISTS "invoice_States" CASCADE;
+
 -- CreateEnum
 CREATE TYPE "Invoice_Status" AS ENUM ('DRAFT', 'ISSUED', 'SENT', 'PARTIALLY_PAID', 'PAID', 'OVERDUE', 'CANCELLED', 'DISPUTED', 'REFUNDED', 'WRITTEN_OFF');
 
@@ -218,4 +227,3 @@ ALTER TABLE "Invoice_Attachments" ADD CONSTRAINT "Invoice_Attachments_invoiceId_
 
 -- AddForeignKey
 ALTER TABLE "Invoice_Activity" ADD CONSTRAINT "Invoice_Activity_invoiceId_fkey" FOREIGN KEY ("invoiceId") REFERENCES "Invoices"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-

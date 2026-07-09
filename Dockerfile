@@ -7,7 +7,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 RUN pnpm install --frozen-lockfile
 
@@ -32,7 +32,9 @@ ENV INNGEST_APP_NAME="AtlasIQ-Build"
 ENV INNGEST_EVENT_KEY="build-placeholder"
 ENV INNGEST_SIGNING_KEY="build-placeholder"
 ENV BETTER_AUTH_SECRET="build-time-placeholder-secret-replace-at-runtime"
-ENV BETTER_AUTH_URL="http://localhost:3000"
+ENV BETTER_AUTH_URL="https://8.229.88.229:3001"
+ENV NEXT_PUBLIC_APP_URL="https://8.229.88.229:3001"
+ENV NEXT_PUBLIC_APP_NAME="AtlasIQ"
 ENV MINIO_ENDPOINT="http://placeholder:9000"
 ENV MINIO_PORT="9000"
 ENV MINIO_BUCKET="placeholder"

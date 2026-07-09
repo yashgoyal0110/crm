@@ -62,7 +62,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "${APP_PORT:-3001}:3000"
+      - "${APP_PORT:-3002}:3000"
     environment:
       # Database — values come from the same env vars as the postgres
       # service above so a single override changes both sides.
@@ -74,7 +74,7 @@ services:
       DB_NAME: ${POSTGRES_DB:-atlasiq}
 
       # Auth
-      BETTER_AUTH_URL: ${PUBLIC_APP_URL:-http://localhost:${APP_PORT:-3001}}
+      BETTER_AUTH_URL: ${PUBLIC_APP_URL:-http://8.229.88.229}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-replace-this-with-a-long-random-secret}
 
       # MinIO — values come from the same env vars as the minio service.
@@ -96,7 +96,7 @@ services:
 
       # App
       NEXT_PUBLIC_APP_NAME: AtlasIQ
-      NEXT_PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://localhost:${APP_PORT:-3001}}
+      NEXT_PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://8.229.88.229}
 
       # Placeholder values for optional external services.
       # The app initializes these clients at module load time, so empty

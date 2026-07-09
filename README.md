@@ -325,7 +325,7 @@ nano .env                # set service passwords, BETTER_AUTH_SECRET, and PUBLIC
 docker compose up -d
 ```
 
-Open [https://8.229.88.229:3001/sign-in](https://8.229.88.229:3001/sign-in), choose **Create the first admin account**, and register with email/password. The first user is activated as admin automatically.
+Open [http://8.229.88.229/sign-in](http://8.229.88.229/sign-in), choose **Create the first admin account**, and register with email/password. The first user is activated as admin automatically.
 
 > [!IMPORTANT]
 > AtlasIQ uses simple email/password auth. Google OAuth is intentionally disabled. Later signups are created as pending users and can be approved from the admin panel.
@@ -334,12 +334,12 @@ Open [https://8.229.88.229:3001/sign-in](https://8.229.88.229:3001/sign-in), cho
 
 | Service | Purpose | Exposed |
 |---|---|---|
-| `app` | AtlasIQ (Next.js standalone build) | `localhost:3002` behind Caddy on `:3001` |
+| `app` | AtlasIQ (Next.js standalone build) | `localhost:3002` behind Caddy on `:80` |
 | `postgres` | PostgreSQL 17 with pgvector | internal only |
 | `minio` | S3-compatible object storage | internal only |
 | `inngest` | Background job runner | internal only |
 
-Only `APP_PORT` is exposed to the host, defaulting to `3002` for the app when Caddy owns public port `3001`. Everything else stays on the internal Docker network — secure by default. Uncomment the relevant `ports:` blocks in `docker-compose.yml` if you need direct access (e.g. for psql or the MinIO console).
+Only `APP_PORT` is exposed to the host, defaulting to `3002` for the app when Caddy owns public port `80`. Everything else stays on the internal Docker network — secure by default. Uncomment the relevant `ports:` blocks in `docker-compose.yml` if you need direct access (e.g. for psql or the MinIO console).
 
 ### Configuring environment variables
 
@@ -360,7 +360,7 @@ The `.env.docker` file lists every supported variable with comments. Beyond the 
 # Example .env
 BETTER_AUTH_SECRET=replace-with-a-long-random-secret
 APP_PORT=3002
-PUBLIC_APP_URL=https://8.229.88.229:3001
+PUBLIC_APP_URL=http://8.229.88.229
 OPENAI_API_KEY=sk-your-real-key       # enables AI enrichment/generation
 FIRECRAWL_API_KEY=fc-...              # enables web research enrichment
 E2B_API_KEY=e2b_...                   # enables browser-agent enrichment

@@ -321,11 +321,11 @@ The fastest way to run AtlasIQ is with Docker Compose. The provided `docker-comp
 git clone https://github.com/pdovhomilja/atlasiq-app.git
 cd atlasiq-app
 cp .env.docker .env
-nano .env                # set service passwords and BETTER_AUTH_SECRET for production
+nano .env                # set service passwords, BETTER_AUTH_SECRET, and PUBLIC_APP_URL
 docker compose up -d
 ```
 
-Open [http://localhost:3001/sign-in](http://localhost:3001/sign-in), choose **Create the first admin account**, and register with email/password. The first user is activated as admin automatically.
+Open [https://8.229.88.229:3001/sign-in](https://8.229.88.229:3001/sign-in), choose **Create the first admin account**, and register with email/password. The first user is activated as admin automatically.
 
 > [!IMPORTANT]
 > AtlasIQ uses simple email/password auth. Google OAuth is intentionally disabled. Later signups are created as pending users and can be approved from the admin panel.
@@ -334,12 +334,12 @@ Open [http://localhost:3001/sign-in](http://localhost:3001/sign-in), choose **Cr
 
 | Service | Purpose | Exposed |
 |---|---|---|
-| `app` | AtlasIQ (Next.js standalone build) | `localhost:3001` |
+| `app` | AtlasIQ (Next.js standalone build) | `localhost:3002` behind Caddy on `:3001` |
 | `postgres` | PostgreSQL 17 with pgvector | internal only |
 | `minio` | S3-compatible object storage | internal only |
 | `inngest` | Background job runner | internal only |
 
-Only `APP_PORT` is exposed to the host, defaulting to `3001`. Everything else stays on the internal Docker network — secure by default. Uncomment the relevant `ports:` blocks in `docker-compose.yml` if you need direct access (e.g. for psql or the MinIO console).
+Only `APP_PORT` is exposed to the host, defaulting to `3002` for the app when Caddy owns public port `3001`. Everything else stays on the internal Docker network — secure by default. Uncomment the relevant `ports:` blocks in `docker-compose.yml` if you need direct access (e.g. for psql or the MinIO console).
 
 ### Configuring environment variables
 
@@ -359,8 +359,8 @@ The `.env.docker` file lists every supported variable with comments. Beyond the 
 ```bash
 # Example .env
 BETTER_AUTH_SECRET=replace-with-a-long-random-secret
-APP_PORT=3001
-PUBLIC_APP_URL=http://YOUR_VM_IP:3001
+APP_PORT=3002
+PUBLIC_APP_URL=https://8.229.88.229:3001
 OPENAI_API_KEY=sk-your-real-key       # enables AI enrichment/generation
 FIRECRAWL_API_KEY=fc-...              # enables web research enrichment
 E2B_API_KEY=e2b_...                   # enables browser-agent enrichment

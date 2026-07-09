@@ -1,0 +1,21 @@
+# AtlasIQ public reverse proxy.
+#
+# This keeps Caddy on the public port 3001 and proxies to the Docker app on
+# host port 3002. Match PUBLIC_APP_URL in .env exactly:
+#   PUBLIC_APP_URL=https://8.229.88.229:3001
+
+https://8.229.88.229:3001 {
+	# Publicly trusted TLS certificates usually require a domain name.
+	# For an IP-only deployment, Caddy serves HTTPS with its internal CA.
+	tls internal
+
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+	}
+
+	reverse_proxy 127.0.0.1:3002
+}

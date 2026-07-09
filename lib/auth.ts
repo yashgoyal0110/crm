@@ -6,11 +6,20 @@ import { ac, admin, manager, user } from "@/lib/auth-permissions";
 import { newUserNotify } from "@/lib/new-user-notify";
 
 const isDemo = false;
+const publicAppURL = process.env.NEXT_PUBLIC_APP_URL || process.env.BETTER_AUTH_URL;
+const trustedOrigins = [
+  publicAppURL,
+  process.env.BETTER_AUTH_URL,
+  "http://8.229.88.229",
+  "http://localhost:3000",
+  "http://localhost:3002",
+].filter((origin): origin is string => Boolean(origin));
 
 export const auth = betterAuth({
   database: prismaAdapter(prismadb, { provider: "postgresql" }),
   secret: process.env.BETTER_AUTH_SECRET,
   baseURL: process.env.BETTER_AUTH_URL,
+  trustedOrigins,
   advanced: {
     database: {
       generateId: "uuid",

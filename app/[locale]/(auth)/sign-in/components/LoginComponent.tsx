@@ -37,13 +37,13 @@ export function LoginComponent() {
           ? await authClient.signIn.email({
               email,
               password,
-              callbackURL: "/",
+              callbackURL: "/crm/dashboard",
             })
           : await authClient.signUp.email({
               name,
               email,
               password,
-              callbackURL: "/",
+              callbackURL: "/crm/dashboard",
             });
 
       if (result.error) {
@@ -52,7 +52,7 @@ export function LoginComponent() {
       }
 
       toast.success(mode === "sign-in" ? "Signed in." : "Account created.");
-      window.location.href = "/";
+      window.location.replace("/crm/dashboard");
     } catch (error) {
       toast.error("Authentication failed.");
     } finally {

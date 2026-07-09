@@ -130,7 +130,7 @@ export function UpdateOpportunityForm({
                   <FormControl>
                     <Input
                       disabled={form.formState.isSubmitting}
-                      placeholder="New AtlasIQ functionality"
+                      placeholder="New DistIQ functionality"
                       {...field}
                     />
                   </FormControl>
@@ -188,7 +188,7 @@ export function UpdateOpportunityForm({
                   <FormControl>
                     <Textarea
                       disabled={form.formState.isSubmitting}
-                      placeholder="New AtlasIQ functionality"
+                      placeholder="New DistIQ functionality"
                       {...field}
                     />
                   </FormControl>

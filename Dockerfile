@@ -27,14 +27,14 @@ COPY . .
 # during build, which imports modules that check env vars at load time.
 # Real values are injected at runtime via docker-compose.
 ENV DATABASE_URL="postgresql://placeholder:placeholder@placeholder:5432/placeholder"
-ENV INNGEST_ID="atlasiq-build"
-ENV INNGEST_APP_NAME="AtlasIQ-Build"
+ENV INNGEST_ID="distiq-build"
+ENV INNGEST_APP_NAME="DistIQ-Build"
 ENV INNGEST_EVENT_KEY="build-placeholder"
 ENV INNGEST_SIGNING_KEY="build-placeholder"
 ENV BETTER_AUTH_SECRET="build-time-placeholder-secret-replace-at-runtime"
-ENV BETTER_AUTH_URL="http://8.229.88.229"
-ENV NEXT_PUBLIC_APP_URL="http://8.229.88.229"
-ENV NEXT_PUBLIC_APP_NAME="AtlasIQ"
+ENV BETTER_AUTH_URL="https://distiq.8.229.88.229.sslip.io"
+ENV NEXT_PUBLIC_APP_URL="https://distiq.8.229.88.229.sslip.io"
+ENV NEXT_PUBLIC_APP_NAME="DistIQ"
 ENV MINIO_ENDPOINT="http://placeholder:9000"
 ENV MINIO_PORT="9000"
 ENV MINIO_BUCKET="placeholder"
@@ -62,7 +62,7 @@ RUN apk add --no-cache curl postgresql-client
 # a pnpm-symlinked structure that npm install chokes on). We'll expose
 # these via PATH and NODE_PATH so prisma.config.ts can resolve `prisma/config`.
 WORKDIR /opt/tools
-RUN printf '{"name":"atlasiq-tools","version":"0.0.0","private":true}\n' > package.json && \
+RUN printf '{"name":"distiq-tools","version":"0.0.0","private":true}\n' > package.json && \
     npm install --no-audit --no-fund \
       prisma@7.6.0 \
       @prisma/client@7.6.0 \

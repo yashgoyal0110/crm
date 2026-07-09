@@ -1,5 +1,5 @@
-<a href="https://atlasiq.app/">
-  <h1 align="center">AtlasIQ</h1>
+<a href="https://distiq.app/">
+  <h1 align="center">DistIQ</h1>
 </a>
 
 <p align="center">
@@ -7,15 +7,15 @@
 </p>
 
 <p align="center">
-AtlasIQ is an AI sales intelligence platform for B2B distribution teams, built with Next.js 16, React 19, TypeScript, PostgreSQL (Prisma 7), and shadcn/ui. It focuses on account/contact enrichment, target lists, campaigns, reports, and pipeline management.
+DistIQ is an AI sales intelligence platform for B2B distribution teams, built with Next.js 16, React 19, TypeScript, PostgreSQL (Prisma 7), and shadcn/ui. It focuses on account/contact enrichment, target lists, campaigns, reports, and pipeline management.
 </p>
 
 <p align="center">
-<a href="https://twitter.com/atlasiqapp">
-<img alt="X (formerly Twitter) URL" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Ftwitter.com%2Fatlasiqapp">
+<a href="https://twitter.com/distiqapp">
+<img alt="X (formerly Twitter) URL" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Ftwitter.com%2Fdistiqapp">
 </a>
-  <a href="https://github.com/pdovhomilja/atlasiq-app/blob/main/LICENSE">
-    <img alt="GitHub License" src="https://img.shields.io/github/license/pdovhomilja/atlasiq-app">
+  <a href="https://github.com/pdovhomilja/distiq-app/blob/main/LICENSE">
+    <img alt="GitHub License" src="https://img.shields.io/github/license/pdovhomilja/distiq-app">
   </a>
 </p>
 
@@ -33,7 +33,7 @@ AtlasIQ is an AI sales intelligence platform for B2B distribution teams, built w
 
 ## Online Demo
 
-You can try it here [demo.atlasiq.io](https://demo.atlasiq.io), then create an account with email and password.
+You can try it here [demo.distiq.io](https://demo.distiq.io), then create an account with email and password.
 
 ---
 
@@ -91,7 +91,7 @@ ENV variable  →  Admin system-wide  →  User profile
 
 ### 🤖 MCP Server — AI Agent Access to CRM Data *(NEW)*
 
-AtlasIQ now ships with a built-in [Model Context Protocol](https://modelcontextprotocol.io/) server, letting AI agents (Claude, Cursor, custom agents) read and write CRM data directly.
+DistIQ now ships with a built-in [Model Context Protocol](https://modelcontextprotocol.io/) server, letting AI agents (Claude, Cursor, custom agents) read and write CRM data directly.
 
 **127 tools across 15 modules:**
 
@@ -119,9 +119,9 @@ AtlasIQ now ships with a built-in [Model Context Protocol](https://modelcontextp
 ```json
 {
   "mcpServers": {
-    "atlasiq": {
+    "distiq": {
       "type": "http",
-      "url": "https://your-atlasiq.com/api/mcp/mcp",
+      "url": "https://your-distiq.com/api/mcp/mcp",
       "headers": { "Authorization": "Bearer nxtc__your_token_here" }
     }
   }
@@ -208,7 +208,7 @@ Global search across all CRM entities from a single search bar — grouped resul
 
 ## Roadmap
 
-1. ✅ Docker version — complete bundle to run AtlasIQ on-premise
+1. ✅ Docker version — complete bundle to run DistIQ on-premise
 2. ✅ Upgrade to Next.js 16 — running on Next.js 16 with React 19
 3. ✅ i18n / localization — 4 languages (English, Czech, German, Ukrainian)
 4. ✅ Email client — IMAP/SMTP email client built in
@@ -232,18 +232,18 @@ We use [resend.com](https://resend.com) + [react.email](https://react.email) as 
 
 ## Reports
 
-We use Tremor charts as a tool for creating charts in AtlasIQ
+We use Tremor charts as a tool for creating charts in DistIQ
 
 ![hero](/public/reports.png)
 
 ## Video (YouTube channel with functions showcase)
 
-[Youtube Channel](https://www.youtube.com/@AtlasIQ_IO) </br>
+[Youtube Channel](https://www.youtube.com/@DistIQ_IO) </br>
 [Invoice module (video)](https://youtu.be/NSMsBMy07Pg)
 
 ## Documentation
 
-Available soon at: http://docs.atlasiq.io
+Available soon at: http://docs.distiq.io
 
 ## Installation
 
@@ -252,8 +252,8 @@ Available soon at: http://docs.atlasiq.io
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/pdovhomilja/atlasiq-app.git
-   cd atlasiq-app
+   git clone https://github.com/pdovhomilja/distiq-app.git
+   cd distiq-app
    ```
 
 1. Install the preset:
@@ -275,7 +275,7 @@ Available soon at: http://docs.atlasiq.io
    **.env**
 
    > > - You will need a PostgreSQL connection string for Prisma ORM
-   > > - Example: `DATABASE_URL="postgresql://user:pass@localhost:5432/atlasiq?schema=public"`
+   > > - Example: `DATABASE_URL="postgresql://user:pass@localhost:5432/distiq?schema=public"`
    > > - Requires PostgreSQL 17+ with the **pgvector** extension enabled
 
    **.env.local**
@@ -313,28 +313,33 @@ Available soon at: http://docs.atlasiq.io
 
 ## Docker Installation (Recommended for Self-Hosting)
 
-The fastest way to run AtlasIQ is with Docker Compose. The provided `docker-compose.yml` bundles everything you need: the app, PostgreSQL (with pgvector), MinIO for file storage, and Inngest for background jobs. No manual setup of databases, buckets, or migrations — it all happens automatically on first start.
+The fastest way to run DistIQ is with Docker Compose. The provided `docker-compose.yml` bundles everything you need: the app, PostgreSQL (with pgvector), MinIO for file storage, and Inngest for background jobs. No manual setup of databases, buckets, or migrations — it all happens automatically on first start.
 
 ### Quick Start
 
 ```sh
-git clone https://github.com/pdovhomilja/atlasiq-app.git
-cd atlasiq-app
+git clone https://github.com/pdovhomilja/distiq-app.git
+cd distiq-app
 cp .env.docker .env
 nano .env                # set service passwords, BETTER_AUTH_SECRET, and PUBLIC_APP_URL
 docker compose up -d
 ```
 
-Open [http://8.229.88.229/sign-in](http://8.229.88.229/sign-in), choose **Create the first admin account**, and register with email/password. The first user is activated as admin automatically.
+Open [https://distiq.8.229.88.229.sslip.io/sign-in](https://distiq.8.229.88.229.sslip.io/sign-in) and use one of the seeded demo accounts:
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | `test@mail.com` | `Test@mail.com` |
+| Sales user | `user@mail.com` | `User@mail.com` |
 
 > [!IMPORTANT]
-> AtlasIQ uses simple email/password auth. Google OAuth is intentionally disabled. Later signups are created as pending users and can be approved from the admin panel.
+> DistIQ uses simple email/password auth. Google OAuth is intentionally disabled. The Docker seed creates demo users plus sample B2B distribution CRM data automatically.
 
 ### What you get
 
 | Service | Purpose | Exposed |
 |---|---|---|
-| `app` | AtlasIQ (Next.js standalone build) | `localhost:3002` behind Caddy on `:80` |
+| `app` | DistIQ (Next.js standalone build) | `localhost:3002` behind Caddy on `:80` |
 | `postgres` | PostgreSQL 17 with pgvector | internal only |
 | `minio` | S3-compatible object storage | internal only |
 | `inngest` | Background job runner | internal only |
@@ -360,7 +365,7 @@ The `.env.docker` file lists every supported variable with comments. Beyond the 
 # Example .env
 BETTER_AUTH_SECRET=replace-with-a-long-random-secret
 APP_PORT=3002
-PUBLIC_APP_URL=http://8.229.88.229
+PUBLIC_APP_URL=https://distiq.8.229.88.229.sslip.io
 OPENAI_API_KEY=sk-your-real-key       # enables AI enrichment/generation
 FIRECRAWL_API_KEY=fc-...              # enables web research enrichment
 E2B_API_KEY=e2b_...                   # enables browser-agent enrichment
@@ -414,16 +419,16 @@ Use that OTP on the sign-in page. After login, configure an email provider from 
 
 ## Contributing
 
-We are open to the AtlasIQ community contributions. Every contribution is welcome.
+We are open to the DistIQ community contributions. Every contribution is welcome.
 
 ### Issues
 
-- [Open an issue](https://github.com/pdovhomilja/atlasiq-app/issues) if you find a bug or have a suggestion for improvements.
+- [Open an issue](https://github.com/pdovhomilja/distiq-app/issues) if you find a bug or have a suggestion for improvements.
 
-### AtlasIQ Super heroes
+### DistIQ Super heroes
 
-<a href="https://github.com/pdovhomilja/atlasiq-app/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=pdovhomilja/atlasiq-app" />
+<a href="https://github.com/pdovhomilja/distiq-app/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=pdovhomilja/distiq-app" />
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
@@ -434,8 +439,8 @@ Made with [contrib.rocks](https://contrib.rocks).
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=pdovhomilja/atlasiq-app&type=Timeline)](https://star-history.com/#pdovhomilja/atlasiq-app&Timeline)
+[![Star History Chart](https://api.star-history.com/svg?repos=pdovhomilja/distiq-app&type=Timeline)](https://star-history.com/#pdovhomilja/distiq-app&Timeline)
 
 ## License
 
-Licensed under the [MIT license](https://github.com/pdovhomilja/atlasiq-app/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/pdovhomilja/distiq-app/blob/main/LICENSE.md).

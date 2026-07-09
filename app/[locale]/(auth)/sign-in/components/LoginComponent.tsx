@@ -17,6 +17,19 @@ import { LogIn, UserPlus } from "lucide-react";
 
 type Mode = "sign-in" | "register";
 
+const demoCredentials = [
+  {
+    label: "Admin demo",
+    email: "test@mail.com",
+    password: "Test@mail.com",
+  },
+  {
+    label: "Sales user demo",
+    email: "user@mail.com",
+    password: "User@mail.com",
+  },
+];
+
 export function LoginComponent() {
   const [isLoading, setIsLoading] = useState(false);
   const [mode, setMode] = useState<Mode>("sign-in");
@@ -71,6 +84,26 @@ export function LoginComponent() {
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
+        <div className="grid gap-2 rounded-md border bg-muted/40 p-3 text-sm">
+          {demoCredentials.map((credential) => (
+            <button
+              key={credential.email}
+              type="button"
+              className="grid gap-1 rounded-md border bg-background p-3 text-left transition hover:border-primary"
+              onClick={() => {
+                setMode("sign-in");
+                setEmail(credential.email);
+                setPassword(credential.password);
+              }}
+              disabled={isLoading}
+            >
+              <span className="font-medium">{credential.label}</span>
+              <span className="text-muted-foreground">
+                {credential.email} / {credential.password}
+              </span>
+            </button>
+          ))}
+        </div>
         {mode === "register" && (
           <div className="grid gap-1.5">
             <Label htmlFor="name">Name</Label>

@@ -163,7 +163,7 @@ export function UpdateAccountForm({
                   <FormControl>
                     <Input
                       disabled={form.formState.isSubmitting}
-                      placeholder="AtlasIQ Inc."
+                      placeholder="DistIQ Inc."
                       {...field}
                     />
                   </FormControl>

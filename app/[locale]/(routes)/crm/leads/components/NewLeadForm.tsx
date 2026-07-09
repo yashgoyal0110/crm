@@ -144,7 +144,7 @@ export function NewLeadForm({ accounts, leadSources, leadStatuses, leadTypes, on
                     <FormControl>
                       <Input
                         disabled={form.formState.isSubmitting}
-                        placeholder="AtlasIQ Inc."
+                        placeholder="DistIQ Inc."
                         {...field}
                       />
                     </FormControl>
@@ -211,7 +211,7 @@ export function NewLeadForm({ accounts, leadSources, leadStatuses, leadTypes, on
                   <FormControl>
                     <Textarea
                       disabled={form.formState.isSubmitting}
-                      placeholder="New AtlasIQ functionality"
+                      placeholder="New DistIQ functionality"
                       {...field}
                     />
                   </FormControl>

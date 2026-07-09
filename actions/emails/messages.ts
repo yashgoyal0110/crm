@@ -187,7 +187,7 @@ export async function sendEmail(input: SendInput) {
     data: {
       emailAccountId: input.accountId,
       userId,
-      rfcMessageId: info.messageId ?? `local-${crypto.randomUUID()}@atlasiq`,
+      rfcMessageId: info.messageId ?? `local-${crypto.randomUUID()}@distiq`,
       folder: EmailFolder.SENT,
       subject: input.subject,
       fromEmail: account.username,

@@ -1,10 +1,10 @@
-# AtlasIQ public reverse proxy.
+# DistIQ public reverse proxy.
 #
-# Caddy listens on public HTTP port 80 and proxies to the Docker app on host
-# port 3002. Match PUBLIC_APP_URL in .env exactly:
-#   PUBLIC_APP_URL=http://8.229.88.229
+# Caddy serves public HTTPS and proxies to the Docker app on host port 3002.
+# Match PUBLIC_APP_URL in .env exactly:
+#   PUBLIC_APP_URL=https://distiq.8.229.88.229.sslip.io
 
-http://8.229.88.229 {
+https://distiq.8.229.88.229.sslip.io {
 	encode zstd gzip
 
 	header {
@@ -15,7 +15,7 @@ http://8.229.88.229 {
 	reverse_proxy 127.0.0.1:3002 {
 		header_up Host {host}
 		header_up X-Forwarded-Host {host}
-		header_up X-Forwarded-Proto http
-		header_up X-Forwarded-Port 80
+		header_up X-Forwarded-Proto https
+		header_up X-Forwarded-Port 443
 	}
 }

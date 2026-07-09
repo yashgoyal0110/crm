@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "title": "AtlasIQ",
-    "description": "AtlasIQ is an AI sales intelligence platform for B2B distribution teams."
+    "title": "DistIQ",
+    "description": "DistIQ is an AI sales intelligence platform for B2B distribution teams."
   },
   "ModuleMenu": {
     "dashboard": "Dashboard",

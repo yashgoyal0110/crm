@@ -1,4 +1,4 @@
-name: atlasiq
+name: distiq
 
 services:
   # --- PostgreSQL Database (with pgvector extension for embeddings) ---
@@ -6,15 +6,15 @@ services:
     image: pgvector/pgvector:pg17
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-atlasiq}
+      POSTGRES_USER: ${POSTGRES_USER:-distiq}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
-      POSTGRES_DB: ${POSTGRES_DB:-atlasiq}
+      POSTGRES_DB: ${POSTGRES_DB:-distiq}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - atlasiq
+      - distiq
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-atlasiq}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-distiq}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -28,12 +28,12 @@ services:
     restart: unless-stopped
     command: server /data --console-address ":9001"
     environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-atlasiq}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-distiq}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-changeme}
     volumes:
       - minio_data:/data
     networks:
-      - atlasiq
+      - distiq
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 5s
@@ -50,12 +50,12 @@ services:
     restart: unless-stopped
     command: inngest dev -u http://app:3000/api/inngest
     networks:
-      - atlasiq
+      - distiq
     # Uncomment to expose Inngest dashboard to host:
     # ports:
     #   - "8288:8288"
 
-  # --- AtlasIQ Application ---
+  # --- DistIQ Application ---
   app:
     build:
       context: .
@@ -66,37 +66,37 @@ services:
     environment:
       # Database — values come from the same env vars as the postgres
       # service above so a single override changes both sides.
-      DATABASE_URL: postgresql://${POSTGRES_USER:-atlasiq}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-atlasiq}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-distiq}:${POSTGRES_PASSWORD:-changeme}@postgres:5432/${POSTGRES_DB:-distiq}
       DB_HOST: postgres
       DB_PORT: "5432"
-      DB_USER: ${POSTGRES_USER:-atlasiq}
+      DB_USER: ${POSTGRES_USER:-distiq}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
-      DB_NAME: ${POSTGRES_DB:-atlasiq}
+      DB_NAME: ${POSTGRES_DB:-distiq}
 
       # Auth
-      BETTER_AUTH_URL: ${PUBLIC_APP_URL:-http://8.229.88.229}
+      BETTER_AUTH_URL: ${PUBLIC_APP_URL:-https://distiq.8.229.88.229.sslip.io}
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-replace-this-with-a-long-random-secret}
 
       # MinIO — values come from the same env vars as the minio service.
       NEXT_PUBLIC_MINIO_ENDPOINT: http://minio:9000
       MINIO_ENDPOINT: http://minio:9000
       MINIO_PORT: "9000"
-      MINIO_BUCKET: atlasiq
+      MINIO_BUCKET: distiq
       MINIO_USE_SSL: "false"
-      MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:-atlasiq}
+      MINIO_ACCESS_KEY: ${MINIO_ROOT_USER:-distiq}
       MINIO_SECRET_KEY: ${MINIO_ROOT_PASSWORD:-changeme}
 
       # Inngest
       INNGEST_DEV: "1"
-      INNGEST_ID: atlasiq
-      INNGEST_APP_NAME: AtlasIQ
+      INNGEST_ID: distiq
+      INNGEST_APP_NAME: DistIQ
       INNGEST_EVENT_KEY: local
       INNGEST_SIGNING_KEY: ""
       INNGEST_BASE_URL: http://inngest:8288
 
       # App
-      NEXT_PUBLIC_APP_NAME: AtlasIQ
-      NEXT_PUBLIC_APP_URL: ${PUBLIC_APP_URL:-http://8.229.88.229}
+      NEXT_PUBLIC_APP_NAME: DistIQ
+      NEXT_PUBLIC_APP_URL: ${PUBLIC_APP_URL:-https://distiq.8.229.88.229.sslip.io}
 
       # Placeholder values for optional external services.
       # The app initializes these clients at module load time, so empty
@@ -115,7 +115,7 @@ services:
       inngest:
         condition: service_started
     networks:
-      - atlasiq
+      - distiq
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 10s
@@ -128,5 +128,5 @@ volumes:
   minio_data:
 
 networks:
-  atlasiq:
+  distiq:
     driver: bridge

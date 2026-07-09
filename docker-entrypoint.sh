@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-echo "==> AtlasIQ Docker Entrypoint"
+echo "==> DistIQ Docker Entrypoint"
 
 # --- 1. Wait for Postgres ---
 echo "==> Waiting for PostgreSQL..."
@@ -55,25 +55,13 @@ if [ -n "$MINIO_ENDPOINT" ] && [ -n "$MINIO_ACCESS_KEY" ] && [ -n "$MINIO_SECRET
   fi
 fi
 
-# --- 5. Seed reference data ---
-# Use psql to count users directly (reliable) rather than prisma db execute
-# (which emits noisy output hard to parse).
-echo "==> Checking if reference data needs seeding..."
-USER_COUNT=$(PGPASSWORD="$DB_PASSWORD" psql \
-  -h "$DB_HOST" -p "$DB_PORT" -U "$DB_USER" -d "$DB_NAME" \
-  -tAc 'SELECT COUNT(*) FROM "Users";' 2>/dev/null || echo "0")
-
-# Strip whitespace
-USER_COUNT=$(echo "$USER_COUNT" | tr -d '[:space:]')
-
-if [ "$USER_COUNT" = "0" ] || [ -z "$USER_COUNT" ]; then
-  echo "==> No users found, seeding reference data..."
-  prisma db seed
-  echo "==> Reference data ready. Create the first admin from the sign-in page."
-else
-  echo "==> Database already has $USER_COUNT user(s), skipping seed."
-fi
+# --- 5. Seed reference + demo data ---
+# The seed is idempotent. It keeps reference rows fresh and guarantees the
+# demo login accounts plus sample CRM data exist after every deploy.
+echo "==> Seeding reference and demo data..."
+prisma db seed
+echo "==> Reference and demo data ready."
 
 # --- 6. Start the application ---
-echo "==> Starting AtlasIQ..."
+echo "==> Starting DistIQ..."
 exec node server.js

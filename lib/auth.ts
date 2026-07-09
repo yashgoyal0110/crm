@@ -10,7 +10,7 @@ const publicAppURL = process.env.NEXT_PUBLIC_APP_URL || process.env.BETTER_AUTH_
 const trustedOrigins = [
   publicAppURL,
   process.env.BETTER_AUTH_URL,
-  "http://8.229.88.229",
+  "https://distiq.8.229.88.229.sslip.io",
   "http://localhost:3000",
   "http://localhost:3002",
 ].filter((origin): origin is string => Boolean(origin));

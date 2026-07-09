@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "title": "AtlasIQ",
-    "description": "Willkommen bei AtlasIQ CRM mit Prisma und Next.js 13"
+    "title": "DistIQ",
+    "description": "Willkommen bei DistIQ CRM mit Prisma und Next.js 13"
   },
   "ModuleMenu": {
     "dashboard": "Dashboard",
@@ -27,7 +27,7 @@
   "DashboardPage": {
     "containerTitle": "Dashboard",
     "totalRevenue": "Gesamtumsatz",
-    "containerDescription": "Willkommen bei AtlasIQ, hier können Sie alle wichtigen Informationen über Ihr Unternehmen sehen.",
+    "containerDescription": "Willkommen bei DistIQ, hier können Sie alle wichtigen Informationen über Ihr Unternehmen sehen.",
     "expectedRevenue": "Erwarteter Umsatz",
     "activeUsers": "Aktive Benutzer",
     "accounts": "Unternehmen",

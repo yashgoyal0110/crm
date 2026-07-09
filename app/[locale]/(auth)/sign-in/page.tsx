@@ -5,7 +5,7 @@ const SignInPage = async () => {
     <div className="h-full">
       <div className="py-10">
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-          {process.env.NEXT_PUBLIC_APP_NAME || "AtlasIQ"}
+          {process.env.NEXT_PUBLIC_APP_NAME || "DistIQ"}
         </h1>
         <p className="mt-3 max-w-xl text-muted-foreground">
           AI sales intelligence for B2B distributors: enrich accounts, qualify

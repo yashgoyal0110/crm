@@ -1,6 +1,6 @@
 -- 0_init created legacy invoice/document extraction tables with the same
 -- "Invoices" table name. Drop them before this historical invoice-module
--- migration creates its newer schema. The AtlasIQ rebrand no longer exposes
+-- migration creates its newer schema. The DistIQ rebrand no longer exposes
 -- invoicing, but these historical migrations still need to apply on fresh
 -- Docker databases.
 DROP TABLE IF EXISTS "DocumentsToInvoices" CASCADE;

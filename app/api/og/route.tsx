@@ -22,13 +22,13 @@ export async function GET(request: Request) {
     const hasTitle = searchParams.has("title");
     const title = hasTitle
       ? searchParams.get("title")?.slice(0, 200)
-      : "AtlasIQ";
+      : "DistIQ";
 
     const hasDescription = searchParams.has("description");
 
     const description = hasDescription
       ? searchParams.get("description")?.slice(0, 200)
-      : "AtlasIQ is an AI sales intelligence platform for B2B distribution teams: enrichment, buying committees, and pipeline in one workspace.";
+      : "DistIQ is an AI sales intelligence platform for B2B distribution teams: enrichment, buying committees, and pipeline in one workspace.";
 
     return new ImageResponse(
       (

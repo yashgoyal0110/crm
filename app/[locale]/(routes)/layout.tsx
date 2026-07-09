@@ -12,6 +12,7 @@ import { getTranslations } from "next-intl/server";
 import { AvatarProvider } from "@/context/avatar-context";
 import { CurrencyProvider } from "@/context/currency-context";
 import { getEnabledCurrencies, getDefaultCurrency } from "@/lib/currency";
+import { ensureFirstAdmin } from "@/lib/ensure-first-admin";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -47,7 +48,7 @@ export default async function AppLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
+  const session = await ensureFirstAdmin(await getSession());
 
   //console.log(session, "session");
 

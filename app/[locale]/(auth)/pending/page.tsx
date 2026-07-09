@@ -5,6 +5,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import TryAgain from "./components/TryAgain";
 import { Users } from "@prisma/client";
+import { ensureFirstAdmin } from "@/lib/ensure-first-admin";
 
 const PendingPage = async () => {
   const adminUsers: Users[] = await prismadb.users.findMany({
@@ -14,10 +15,10 @@ const PendingPage = async () => {
     },
   });
 
-  const session = await getSession();
+  const session = await ensureFirstAdmin(await getSession());
 
   if (session?.user.userStatus !== "PENDING") {
-    return redirect("/");
+    return redirect("/crm/dashboard");
   }
 
   return (

@@ -68,6 +68,7 @@ RUN printf '{"name":"distiq-tools","version":"0.0.0","private":true}\n' > packag
       @prisma/client@7.6.0 \
       @prisma/adapter-pg@7.6.0 \
       pg@8.18.0 \
+      better-auth@1.6.11 \
       tsx@4.21.0 \
       dotenv@17.3.1 \
       typescript@5.9.3
@@ -112,6 +113,9 @@ RUN printf '%s\n' \
 # overwriting existing symlinks/dirs from the pnpm-structured standalone.
 RUN mkdir -p /app/node_modules/@prisma && \
     cp -rn /opt/tools/node_modules/@prisma/adapter-pg /app/node_modules/@prisma/ 2>/dev/null || true && \
+    cp -rn /opt/tools/node_modules/@better-auth /app/node_modules/ 2>/dev/null || true && \
+    cp -rn /opt/tools/node_modules/@noble /app/node_modules/ 2>/dev/null || true && \
+    cp -rn /opt/tools/node_modules/better-auth /app/node_modules/ 2>/dev/null || true && \
     cp -rn /opt/tools/node_modules/pg-cloudflare /app/node_modules/ 2>/dev/null || true
 
 # Copy entrypoint

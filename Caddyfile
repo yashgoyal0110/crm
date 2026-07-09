@@ -19,3 +19,7 @@ https://distiq.8.229.88.229.sslip.io {
 		header_up X-Forwarded-Port 443
 	}
 }
+
+servicedock.8.229.88.229.sslip.io {
+  reverse_proxy 127.0.0.1:4001
+}
